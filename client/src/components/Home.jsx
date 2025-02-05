@@ -11,9 +11,9 @@ const Home = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [selectedTopicUrls, setSelectedTopicUrls] = useState([]);
-  console.log("selectedTopicUrls", selectedTopicUrls);
+  // console.log("selectedTopicUrls", selectedTopicUrls);
   const [RedirectOrig, setRedirectOrig] = useState([]);
-  console.log("RedirectOrig", RedirectOrig);
+  // console.log("RedirectOrig", RedirectOrig);
   const [UrlAnalytics, setUrlAnalytics] = useState([]);
   const token = localStorage.getItem("token");
 
@@ -97,7 +97,7 @@ const Home = () => {
       const response = await AxiosInstance.get(
         `/url/analytics/${alias}?token=${token}`
       );
-      console.log("getUrlAnalytics response", response);
+      // console.log("getUrlAnalytics response", response);
       if (response) {
         setUrlAnalytics(response?.data);
         console.log("UrlAnalytics", UrlAnalytics);

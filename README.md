@@ -1,10 +1,4 @@
-
-
----
-
-# 🌐 **The Alter Office Task** 🚀
-
-Welcome to **The Alter Office Task**! 🎉 This is a full-stack application designed to simplify URL shortening, user authentication, and URL usage analytics. Built using cutting-edge technologies like **Node.js**, **Express**, **MongoDB**, and **React**, this app showcases a powerful combination of backend and frontend development. Let's dive in! 😎
+Here's the improved **Table of Contents** for **The Alter Office Task**:
 
 ---
 
@@ -13,13 +7,19 @@ Welcome to **The Alter Office Task**! 🎉 This is a full-stack application desi
 1. [Project Overview](#project-overview)
 2. [Technologies Used](#technologies-used)
 3. [Folder Structure](#folder-structure)
-4. [API Documentation](#-api-documentation)  
-5. [Video Demonstration](#-video-demonstration)  
+4. [API Documentation](#api-documentation)
+5. [Video Demonstration](#video-demonstration)
 6. [Installation](#installation)
 7. [Running the Application](#running-the-application)
-9. [Environment Variables](#environment-variables)
+8. [Environment Variables](#environment-variables)
 9. [API Routes](#api-routes)
 10. [Contributing](#contributing)
+
+--- 
+
+### 🌐 **The Alter Office Task** 🚀
+
+Welcome to **The Alter Office Task**! 🎉 This is a full-stack application designed to simplify URL shortening, user authentication, and URL usage analytics. Built using cutting-edge technologies like **Node.js**, **Express**, **MongoDB**, and **React**, this app showcases a powerful combination of backend and frontend development. Let's dive in! 😎
 
 ---
 
@@ -107,15 +107,20 @@ Here’s an overview of the project structure:
   package.json
   .gitignore
 ```
-## **📘 API Documentation**
+
+---
+
+## 📘 **API Documentation**
+
 For a detailed description of the API, including request and response formats, refer to the full **API Documentation** here:  
 [📄 API Documentation (Postman)](https://www.postman.com/joint-operations-cosmologist-64352344/workspace/url-shortner-docs/collection/30730048-00010ba2-fd51-456c-9c82-7234cfaaa6b0?action=share&creator=30730048)
 
+---
 
-## **🎥 Video Demonstration**
+## 🎥 **Video Demonstration**
+
 Watch the **video demonstration** of this project in action here:  
 [🎬 Video File (Google Drive)](https://drive.google.com/file/d/1jZEMyiXhFz8TGMjuREmDVnJSTdcQbCyZ/view?usp=sharing)
-
 
 ### **Key Files:**
 - **server.js**: The heart of the backend, running the Express server 💻
@@ -216,10 +221,10 @@ COOKIE_SECRET=your_cookie_secret
 
 - AND MORE...
 
-
 ### Rate Limiting:
 - Applied on sensitive routes such as URL shortening and analytics to protect against abuse ⚠️
 
+---
 
 ## 🤝 **Contributing**
 
@@ -232,4 +237,3 @@ We welcome contributions to **The Alter Office Task**! If you want to contribute
 5. Create a pull request (PR) 🎉
 
 ---
-

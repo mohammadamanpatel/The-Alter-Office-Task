@@ -7,7 +7,7 @@ import Home  from "./components/Home";
 
 const App = () => {
   const token = localStorage.getItem("token");
-  console.log("token", token);
+  // console.log("token", token);
   
   return (
     <Router>

@@ -16,9 +16,9 @@ const OAuthRedirect = () => {
     const userId = queryParams.get("userId");
 
     // Log the parameters for debugging
-    console.log("queryParams", queryParams);
-    console.log("token", token);
-    console.log("userId", userId);
+    // console.log("queryParams", queryParams);
+    // console.log("token", token);
+    // console.log("userId", userId);
 
     if (token && userId) {
       // Store the token and userId in localStorage or state

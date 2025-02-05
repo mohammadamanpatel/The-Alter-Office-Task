@@ -13,12 +13,13 @@ Welcome to **The Alter Office Task**! 🎉 This is a full-stack application desi
 1. [Project Overview](#project-overview)
 2. [Technologies Used](#technologies-used)
 3. [Folder Structure](#folder-structure)
-4. [Installation](#installation)
-5. [Running the Application](#running-the-application)
-6. [Environment Variables](#environment-variables)
-7. [API Routes](#api-routes)
-8. [Contributing](#contributing)
-9. [License](#license)
+4. [API Documentation](#-api-documentation)  
+5. [Video Demonstration](#-video-demonstration)  
+6. [Installation](#installation)
+7. [Running the Application](#running-the-application)
+9. [Environment Variables](#environment-variables)
+9. [API Routes](#api-routes)
+10. [Contributing](#contributing)
 
 ---
 

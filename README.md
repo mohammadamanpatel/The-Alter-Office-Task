@@ -136,8 +136,8 @@ Follow these steps to set up the project on your local machine:
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/yourusername/the-alter-office-task.git
-cd the-alter-office-task
+git clone https://github.com/mohammadamanpatel/The-Alter-Office-Task
+cd The-Alter-Office-Task
 ```
 
 ### 2. Install dependencies for the backend

@@ -1,5 +1,12 @@
 # 🌐 **The Alter Office Task** 🚀
 
+--- 
+
+### 🌐 **URL Shortenig App**
+
+Welcome to **The Alter Office Task**! 🎉 This is a full-stack application designed to simplify URL shortening, user authentication, and URL usage analytics. Built using cutting-edge technologies like **Node.js**, **Express**, **MongoDB**, and **React**, this app showcases a powerful combination of backend and frontend development. Let's dive in! 😎
+
+---
 
 ## 🗂 **Table of Contents**
 
@@ -14,13 +21,6 @@
 9. [API Routes](#-api-routes)
 10. [Contributing](#-contributing)
 
---- 
-
-### 🌐 **URL Shortenig App**
-
-Welcome to **The Alter Office Task**! 🎉 This is a full-stack application designed to simplify URL shortening, user authentication, and URL usage analytics. Built using cutting-edge technologies like **Node.js**, **Express**, **MongoDB**, and **React**, this app showcases a powerful combination of backend and frontend development. Let's dive in! 😎
-
----
 
 ## 📊 **Project Overview**
 

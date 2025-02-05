@@ -266,7 +266,7 @@ export const getTopicAnalytics = async (req, res) => {
     console.log("Serving from database");
     return res.status(200).json(topicAnalytics);
   } catch (error) {
-    console.error("Error fetching topic analytics:", error.message);
+    console.error("Error fetching topic analytics:", error);
     return res.status(500).json({ error: "Internal Server Error" });
   }
 };

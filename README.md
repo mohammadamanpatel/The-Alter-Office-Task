@@ -2,16 +2,16 @@
 
 ## 🗂 **Table of Contents**
 
-1. [Project Overview](#project-overview)
-2. [Technologies Used](#technologies-used)
-3. [Folder Structure](#folder-structure)
-4. [API Documentation](#api-documentation)
-5. [Video Demonstration](#video-demonstration)
-6. [Installation](#installation)
-7. [Running the Application](#running-the-application)
-8. [Environment Variables](#environment-variables)
-9. [API Routes](#api-routes)
-10. [Contributing](#contributing)
+1. [Project Overview](#-project-overview)
+2. [Technologies Used](#-technologies-used)
+3. [Folder Structure](#-folder-structure)
+4. [API Documentation](#-api-documentation)
+5. [Video Demonstration](#-video-demonstration)
+6. [Installation](#-installation)
+7. [Running the Application](#-running-the-application)
+8. [Environment Variables](#-environment-variables)
+9. [API Routes](#-api-routes)
+10. [Contributing](#-contributing)
 
 --- 
 

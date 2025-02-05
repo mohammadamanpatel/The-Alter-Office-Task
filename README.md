@@ -1,5 +1,3 @@
-Here's the improved **Table of Contents** for **The Alter Office Task**:
-
 ---
 
 ## 🗂 **Table of Contents**

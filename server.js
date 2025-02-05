@@ -1,7 +1,7 @@
 import express from "express";
 import { config } from "dotenv";
 import DBConnection from "./config/DB.config.js"; // MongoDB connection
-import cookieParser from "cookie-parser"; // Cookie parsing middleware
+import cookieParser from "cookie-parser"; // Cookie parser
 import authRoutes from "./routes/auth.routes.js"; // Auth routes
 import urlRoutes from "./routes/url.routes.js"; // URL routes
 import path from "path";

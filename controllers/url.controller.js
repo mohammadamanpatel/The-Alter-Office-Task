@@ -1,11 +1,12 @@
 import { nanoid } from "nanoid";
 import Url from "../models/Url.model.js";
-import useragent from "useragent"; // Library to parse user-agent string
-import requestIp from "request-ip"; // Library to get user's IP address
-import redisClient from "../config/Redis.config.js";
+import useragent from "useragent";
+import requestIp from "request-ip";
+import redisclient from "../config/Redis.config.js";
+
+// Create Short URL
 export const createShortUrl = async (req, res) => {
   try {
-    console.log("req.body", req.body);
     const { longUrl, customAlias, topic } = req.body;
     const userId = req.user.id;
 
@@ -19,24 +20,23 @@ export const createShortUrl = async (req, res) => {
       return res.status(400).json({ error: "Alias already in use" });
     }
 
-    let shortUrl = `${process.env.BASE_URL}/${alias}`;
+    const shortUrl = `${process.env.BASE_URL}/${alias}`;
     const newUrl = new Url({ longUrl, shortUrl, alias, topic, user: userId });
-    console.log("newUrl", newUrl);
     await newUrl.save();
 
-    await redisClient.del(`overallAnalytics:${userId}`); // Overall analytics
-    await redisClient.del(`urlAnalytics:${alias}`); // URL analytics
-    await redisClient.del(`topicAnalytics:${topic}`); // Topic analytics
+    // Clear related cache
+    await redisclient.del(`overallAnalytics:${userId}`);
+    await redisclient.del(`urlAnalytics:${alias}`);
+    await redisclient.del(`topicAnalytics:${topic}`);
 
-    return res
-      .status(201)
-      .json({ longUrl, shortUrl, alias, topic, user: userId });
+    return res.status(201).json({ longUrl, shortUrl, alias, topic, user: userId });
   } catch (error) {
-    console.error("Error while creating shortUrl", error);
-    res.status(500).json({ error: "Internal Server error" });
+    console.error("Error while creating shortUrl:", error);
+    res.status(500).json({ error: "Internal Server Error" });
   }
 };
 
+// Redirect to Original URL
 export const redirectToOriginalUrl = async (req, res) => {
   try {
     console.log("req.params", req.params);
@@ -47,79 +47,69 @@ export const redirectToOriginalUrl = async (req, res) => {
       return res.status(404).json({ error: "Short URL not found" });
     }
 
-    // Get user's IP address
     const ipAddress = requestIp.getClientIp(req);
-    console.log("ipAddress", ipAddress);
-    // Parse user-agent string to get OS and device type
     const userAgent = useragent.parse(req.headers["user-agent"]);
-    console.log("userAgent", userAgent);
-    const osType = userAgent.os.toString(); // e.g., "Windows 10", "Mac OS X"
-    console.log("osType", osType);
-    const deviceType = userAgent.device.toString(); // e.g., "iPhone", "Desktop"
-    console.log("deviceType", deviceType);
-    // Add click data to the URL
-    urlData.clicks.push({
-      ipAddress,
-      osType,
-      deviceType,
-    });
+    const osType = userAgent.os.toString();
+    const deviceType = userAgent.device.toString();
 
-    // Increment visit count
+    urlData.clicks.push({ ipAddress, osType, deviceType });
     urlData.visits = (urlData.visits || 0) + 1;
     console.log("urlData", urlData);
-    // Save the updated URL document
     await urlData.save();
 
-    // Redirect to the original URL
     return res.json(urlData);
   } catch (error) {
-    console.error("Error in redirecting", error);
+    console.error("Error in redirecting:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
+
+// Get User URLs
 export const getUserUrls = async (req, res) => {
   try {
-    console.log("req.user", req.user);
     const userId = req.user.id;
     const urls = await Url.find({ user: userId });
 
     return res.status(200).json(urls);
   } catch (error) {
-    console.error("Error fetching URLs", error.message);
+    console.error("Error fetching URLs:", error.message);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
+
+// Delete Short URL
 export const deleteShortUrl = async (req, res) => {
   try {
     const { alias } = req.params;
     const userId = req.user.id;
 
     const url = await Url.findOne({ alias });
-
     if (!url) {
       return res.status(404).json({ error: "Short URL not found" });
     }
-
-    // Check if the user owns the URL
     if (url.user.toString() !== userId) {
       return res.status(403).json({ error: "Unauthorized" });
     }
 
     await Url.findOneAndDelete({ alias });
+    await redisclient.del(`urlAnalytics:${alias}`);
+    await redisclient.del(`overallAnalytics:${userId}`);
+
     return res.status(200).json({ message: "Short URL deleted successfully" });
   } catch (error) {
-    console.error("Error deleting URL", error.message);
+    console.error("Error deleting URL:", error.message);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
 
+// Get URL Analytics
 export const getUrlAnalytics = async (req, res) => {
   try {
     console.log("req.params", req.params);
     const { alias } = req.params;
 
     // Check if data is cached in Redis
-    const cachedData = await redisClient.get(`urlAnalytics:${alias}`);
+    const cachedData = await redisclient.get(`urlAnalytics:${alias}`);
     if (cachedData) {
       console.log("Serving from cache");
       return res.status(200).json(JSON.parse(cachedData));
@@ -184,12 +174,9 @@ export const getUrlAnalytics = async (req, res) => {
     };
 
     // Cache the data in Redis (expire after 1 hour)
-    await redisClient.set(
+    await redisclient.setex(
       `urlAnalytics:${alias}`,
-      JSON.stringify(analyticsData),
-      {
-        EX: 3600, // Cache expiration time in seconds (1 hour)
-      }
+      3600, JSON.stringify(analyticsData)
     );
     console.log("analyticsData", analyticsData);
     console.log("Serving from database");
@@ -200,53 +187,29 @@ export const getUrlAnalytics = async (req, res) => {
   }
 };
 
+
+// Get Topic Analytics
 export const getTopicAnalytics = async (req, res) => {
   try {
     const { topic } = req.params;
 
-    // Check if data is cached in Redis
-    const cachedData = await redisClient.get(`topicAnalytics:${topic}`);
+    const cachedData = await redisclient.get(`topicAnalytics:${topic}`);
     if (cachedData) {
       console.log("Serving from cache");
       return res.status(200).json(JSON.parse(cachedData));
     }
 
-    // Fetch data from the database
     const urls = await Url.find({ topic });
     if (!urls.length) {
       return res.status(404).json({ error: "No URLs found for this topic" });
     }
 
-    // Calculate analytics
-    let totalClicks = 0;
-    let uniqueUsers = new Set();
-    const clicksByDate = {};
-
-    const last7Days = Array.from({ length: 7 }, (_, i) => {
-      const date = new Date();
-      date.setDate(date.getDate() - i);
-      return date.toISOString().split("T")[0];
-    });
-
-    urls.forEach((url) => {
-      totalClicks += url.clicks.length;
-      url.clicks.forEach((click) => {
-        uniqueUsers.add(click.ipAddress);
-
-        const clickDate = click.timestamp.toISOString().split("T")[0];
-        if (last7Days.includes(clickDate)) {
-          clicksByDate[clickDate] = (clicksByDate[clickDate] || 0) + 1;
-        }
-      });
-    });
+    const totalClicks = urls.reduce((sum, url) => sum + url.clicks.length, 0);
+    const uniqueUsers = new Set(urls.flatMap((url) => url.clicks.map((click) => click.ipAddress)));
 
     const topicAnalytics = {
       totalClicks,
       uniqueUsers: uniqueUsers.size,
-      clicksByDate: last7Days.map((date) => ({
-        date,
-        clickCount: clicksByDate[date] || 0,
-      })),
       urls: urls.map((url) => ({
         shortUrl: url.shortUrl,
         totalClicks: url.clicks.length,
@@ -254,51 +217,41 @@ export const getTopicAnalytics = async (req, res) => {
       })),
     };
 
-    // Cache the data in Redis (expire after 1 hour)
-    await redisClient.set(
-      `topicAnalytics:${topic}`,
-      JSON.stringify(topicAnalytics),
-      {
-        EX: 3600, // Cache expiration time in seconds (1 hour)
-      }
-    );
+    // Cache the topic analytics for 1 hour using setex
+    await redisclient.setex(`topicAnalytics:${topic}`, 3600, JSON.stringify(topicAnalytics));
 
-    console.log("Serving from database");
     return res.status(200).json(topicAnalytics);
   } catch (error) {
     console.error("Error fetching topic analytics:", error);
-    return res.status(500).json({ error: "Internal Server Error" });
+    res.status(500).json({ error: "Internal Server Error" });
   }
 };
+
+
 
 export const getOverallAnalytics = async (req, res) => {
   try {
     const userId = req.user.id;
-
-    // Check if data is cached in Redis
-    const cachedData = await redisClient.get(`overallAnalytics:${userId}`);
+    const cachedData = await redisclient.get(`overallAnalytics:${userId}`);
     if (cachedData) {
       console.log("Serving from cache");
       return res.status(200).json(JSON.parse(cachedData));
     }
 
-    // Fetch data from the database
     const urls = await Url.find({ user: userId });
     if (!urls.length) {
       return res.status(404).json({ error: "No URLs found for this user" });
     }
 
-    // Calculate analytics
     let totalClicks = 0;
     let uniqueUsers = new Set();
     const osType = {};
     const deviceType = {};
-
+    console.log("urls", urls);  
     urls.forEach((url) => {
       totalClicks += url.clicks.length;
       url.clicks.forEach((click) => {
         uniqueUsers.add(click.ipAddress);
-
         osType[click.osType] = (osType[click.osType] || 0) + 1;
         deviceType[click.deviceType] = (deviceType[click.deviceType] || 0) + 1;
       });
@@ -308,31 +261,17 @@ export const getOverallAnalytics = async (req, res) => {
       totalUrls: urls.length,
       totalClicks,
       uniqueUsers: uniqueUsers.size,
-      osType: Object.keys(osType).map((os) => ({
-        osName: os,
-        uniqueClicks: osType[os],
-        uniqueUsers: osType[os],
-      })),
-      deviceType: Object.keys(deviceType).map((device) => ({
-        deviceName: device,
-        uniqueClicks: deviceType[device],
-        uniqueUsers: deviceType[device],
-      })),
+      osType,
+      deviceType,
     };
 
-    // Cache the data in Redis (expire after 1 hour)
-    await redisClient.set(
-      `overallAnalytics:${userId}`,
-      JSON.stringify(overallAnalytics),
-      {
-        EX: 3600, // Cache expiration time in seconds (1 hour)
-      }
-    );
+    // Cache the overall analytics for 1 hour using setex
+    await redisclient.setex(`overallAnalytics:${userId}`, 3600, JSON.stringify(overallAnalytics));
 
     console.log("Serving from database");
     return res.status(200).json(overallAnalytics);
   } catch (error) {
     console.error("Error fetching overall analytics:", error);
-    return res.status(500).json({ error: "Internal Server Error" });
+    res.status(500).json({ error: "Internal Server Error" });
   }
 };

@@ -12,7 +12,7 @@ Welcome to **The Alter Office Task**! 🎉 This is a full-stack application desi
 3. [Folder Structure](#-folder-structure)
 4. [API Documentation](#-api-documentation)
 5. [Video Demonstration](#-video-demonstration)
-6. [Video Demonstration of unit Testing](#-video-demonstration-unit-test)
+6. [Video Demonstration of unit Testing](#-video-demonstration)
 7. [Installation](#-installation)
 8. [Running the Application](#-running-the-application)
 9. [Environment Variables](#-environment-variables)
@@ -120,8 +120,6 @@ For a detailed description of the API, including request and response formats, r
 
 Watch the **video demonstration** of this project in action here:  
 [🎬 Video File (Google Drive)](https://drive.google.com/file/d/1jZEMyiXhFz8TGMjuREmDVnJSTdcQbCyZ/view?usp=sharing)
-
-## 🎥 **Video Demonstration of unit testing**
 
 Watch the **video demonstration** of this unit tests in action here:  
 [🎬 Video File (Google Drive)](https://drive.google.com/file/d/171Ztd1fMORCK7xIg6Be8GGwnNXZIf1jG/view?usp=sharing)

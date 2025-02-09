@@ -20,6 +20,8 @@ describe("URL Shortening API", function () {
   after(async () => {
     // Cleaning up the database after tests
     await Url.deleteMany({});
+
+    //plz use redisclient.flushAll if using local system redis insight
     await redisclient.flushall(); // Clearing Redis cache after every test
   });
 

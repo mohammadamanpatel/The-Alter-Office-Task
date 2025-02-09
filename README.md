@@ -12,11 +12,12 @@ Welcome to **The Alter Office Task**! 🎉 This is a full-stack application desi
 3. [Folder Structure](#-folder-structure)
 4. [API Documentation](#-api-documentation)
 5. [Video Demonstration](#-video-demonstration)
-6. [Installation](#-installation)
-7. [Running the Application](#-running-the-application)
-8. [Environment Variables](#-environment-variables)
-9. [API Routes](#-api-routes)
-10. [Contributing](#-contributing)
+6. [Video Demonstration of unit Testing](#-video-demonstration-unit-test)
+7. [Installation](#-installation)
+8. [Running the Application](#-running-the-application)
+9. [Environment Variables](#-environment-variables)
+10. [API Routes](#-api-routes)
+11. [Contributing](#-contributing)
 
 
 ## 📊 **Project Overview**
@@ -54,6 +55,7 @@ Key Features:
 - 🔒 **JWT Authentication**
 - 🛑 **Express Rate Limit** (for rate-limiting)
 - 🛠️ **Redis** (for caching and rate-limiting)
+- 🧪 **Test** (Unit Testing with Mocha,Chai & SuperTest)
 - 🌐 **Google OAuth2** for authentication
 - 🍪 **Cookie-parser** (for session handling)
 
@@ -100,6 +102,7 @@ Here’s an overview of the project structure:
   /utils        (Utility functions like rate limiters)
   .env          (Environment variables)
   server.js     (Main Express server)
+  Testing.js    (Unit Testing)
   package.json
   .gitignore
 ```
@@ -118,6 +121,11 @@ For a detailed description of the API, including request and response formats, r
 Watch the **video demonstration** of this project in action here:  
 [🎬 Video File (Google Drive)](https://drive.google.com/file/d/1jZEMyiXhFz8TGMjuREmDVnJSTdcQbCyZ/view?usp=sharing)
 
+## 🎥 **Video Demonstration of unit testing**
+
+Watch the **video demonstration** of this unit tests in action here:  
+[🎬 Video File (Google Drive)](https://drive.google.com/file/d/171Ztd1fMORCK7xIg6Be8GGwnNXZIf1jG/view?usp=sharing)
+
 ### **Key Files:**
 - **server.js**: The heart of the backend, running the Express server 💻
 - **auth.routes.js**: Handles authentication and Google OAuth 🌐
@@ -125,6 +133,7 @@ Watch the **video demonstration** of this project in action here:
 - **rate.limiter.js**: Ensures rate-limiting on sensitive routes 🚨
 - **DB.config.js**: Configures MongoDB database 🗄️
 - **Redis.config.js**: Configures Redis for caching and rate-limiting 🔥
+- **Testing.js**: Handles all the unit test work using mocha,chai and supertest
 - **App.jsx**: Main React component 🖥️
 
 ---
@@ -154,6 +163,10 @@ cd client
 npm install
 ```
 
+### 4. Testing dependencies
+```
+npm test
+```
 ---
 
 ## 🚀 **Running the Application**

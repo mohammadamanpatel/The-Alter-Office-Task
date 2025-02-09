@@ -3,7 +3,8 @@ import Url from "../models/Url.model.js";
 import useragent from "useragent";
 import requestIp from "request-ip";
 import redisclient from "../config/Redis.config.js";
-//note that if you are using redis insight of local system so plz use redisclient.set instead of redisclient.setex(only for redis upstash)
+//Note that if you are using redis insight of local system so plz use redisclient.set instead of redisclient.setex(only for redis upstash)
+
 // Create Short URL
 export const createShortUrl = async (req, res) => {
   try {

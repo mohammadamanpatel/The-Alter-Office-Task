@@ -12,8 +12,7 @@ describe("URL Shortening API", function () {
 
   before((done) => {
     // jwt token for user data 
-    token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YTMyYmIzOGU4Y2ZmMjBhMzZmNmFkYyIsImdvb2dsZUlkIjoiMTE2NTUxODk4MDgzODgzODI1NTg3Iiwicm9sZSI6InVzZXIiLCJpYXQiOjE3Mzg4NDAzOTEsImV4cCI6MTc0NzQ4MDM5MX0.8AhBMys5gJ0I6DT4ROJiH7bNSeSL-BseKtZPsNot2j0";
+    token = process.env.TEST_JWT;
     done();
   });
 

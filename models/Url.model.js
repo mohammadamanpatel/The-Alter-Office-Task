@@ -7,17 +7,6 @@ const UrlSchema = new mongoose.Schema(
     alias: { type: String, required: true, unique: true },
     topic: { type: String },
     user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true }, // Reference to User
-<<<<<<< HEAD
-    clicks: [
-      {
-        timestamp: { type: Date, default: Date.now },
-        ipAddress: { type: String },
-        osType: { type: String },
-        deviceType: { type: String },
-      },
-    ],
-=======
->>>>>>> 34d4895 (completed betterment)
   },
   { timestamps: true }
 );

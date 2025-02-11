@@ -15,10 +15,7 @@ const Home = () => {
   const [RedirectOrig, setRedirectOrig] = useState([]);
   // console.log("RedirectOrig", RedirectOrig);
   const [UrlAnalytics, setUrlAnalytics] = useState([]);
-<<<<<<< HEAD
-=======
   console.log("UrlAnalytics", UrlAnalytics);
->>>>>>> 34d4895 (completed betterment)
   const token = localStorage.getItem("token");
 
   useEffect(() => {
@@ -101,16 +98,9 @@ const Home = () => {
       const response = await AxiosInstance.get(
         `/url/analytics/${alias}?token=${token}`
       );
-<<<<<<< HEAD
-      // console.log("getUrlAnalytics response", response);
-      if (response) {
-        setUrlAnalytics(response?.data);
-        console.log("UrlAnalytics", UrlAnalytics);
-=======
       console.log("getUrlAnalytics response", response.data);
       if (response) {
         setUrlAnalytics(response.data);
->>>>>>> 34d4895 (completed betterment)
       } else {
         setError("URL not found.");
       }
@@ -261,27 +251,6 @@ const Home = () => {
                 </div>
               )}
 
-<<<<<<< HEAD
-              {/* Device Type Analytics */}
-              {UrlAnalytics.deviceType &&
-                UrlAnalytics.deviceType.length > 0 && (
-                  <div>
-                    <h4 className="text-xl font-semibold text-gray-700">
-                      Device Type Analytics
-                    </h4>
-                    <ul>
-                      {UrlAnalytics.deviceType.map((data, index) => (
-                        <li key={index} className="text-sm text-gray-600">
-                          {data.deviceName}
-                          <span className="font-semibold">{data.count}</span>{" "}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-
-              {/* Add any other details from UrlAnalytics as necessary */}
-=======
               {/* OS Type Analytics */}
               {UrlAnalytics.osType && (
                 <div>
@@ -317,7 +286,6 @@ const Home = () => {
                   </ul>
                 </div>
               )}
->>>>>>> 34d4895 (completed betterment)
             </div>
           )}
         </ul>

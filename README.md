@@ -4,7 +4,6 @@
 
 Welcome to **The Alter Office Task**! 🎉 This full-stack application simplifies **URL shortening**, **user authentication**, and **URL usage analytics**, using cutting-edge technologies like **Node.js**, **Express**, **MongoDB**, **Redis**, **React**, and **Docker**. Let’s dive in! 😎
 
----
 
 ## 🗂 **Table of Contents**
 
@@ -20,7 +19,6 @@ Welcome to **The Alter Office Task**! 🎉 This full-stack application simplifie
 10. [API Routes](#-api-routes)
 11. [Contributing](#-contributing)
 
----
 
 ## 📊 **Project Overview**
 

@@ -20,21 +20,6 @@ describe("URL Shortening API", function () {
   after(async () => {
     // Cleaning up the database after tests
     await Url.deleteMany({});
-<<<<<<< HEAD
-
-    //plz use redisclient.flushAll if using local system redis insight
-=======
-<<<<<<< HEAD
-
-    //plz use redisclient.flushAll if using local system redis insight
-=======
-<<<<<<< HEAD
-
-    //plz use redisclient.flushAll if using local system redis insight
-=======
->>>>>>> 19ae916 (completed betterment)
->>>>>>> c03bae0 (completed betterment)
->>>>>>> 34d4895 (completed betterment)
     await redisclient.flushall(); // Clearing Redis cache after every test
   });
 

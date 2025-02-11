@@ -40,7 +40,6 @@ Key Features:
 - 🔐 **Redis-based Rate Limiting** for enhanced protection
 - ⚡ **JWT Authentication**
 
----
 
 ## 🛠 **Technologies Used**
 
@@ -69,7 +68,6 @@ Key Features:
 - **Cookie-parser**
 - **CORS**
 
----
 
 ## 📂 **Folder Structure**
 
@@ -86,21 +84,18 @@ Key Features:
   docker-compose.yml → Docker Compose configuration
 ```
 
----
 
 ## 📘 **API Documentation**
 
 For detailed API specifications, refer to the [📄 API Documentation (Postman)](https://www.postman.com/joint-operations-cosmologist-64352344/workspace/url-shortner-docs/collection/30730048-00010ba2-fd51-456c-9c82-7234cfaaa6b0?action=share&creator=30730048).
 
----
 
 ## 🎥 **Video Demonstration**
 
 - [🎬 Project Demonstration](https://drive.google.com/file/d/1jZEMyiXhFz8TGMjuREmDVnJSTdcQbCyZ/view?usp=sharing)
 - [🎬 Unit Testing Demo](https://drive.google.com/file/d/171Ztd1fMORCK7xIg6Be8GGwnNXZIf1jG/view?usp=sharing)
 - [🎬 Project Demonstration Update](https://drive.google.com/file/d/1N_KHKDvdUtfoNMxfxLMAI2Q_VaP9IF6u/view?usp=sharing)
----
-
+  
 ## 📝 **Installation**
 
 ### 1. Clone the repository
@@ -126,7 +121,6 @@ docker-compose up --build
 
 This will start both the **backend** and **frontend** services in Docker containers.
 
----
 
 ## 🚀 **Running the Application Locally**
 
@@ -141,7 +135,6 @@ docker-compose up
 - **Frontend**: [http://localhost:3000](http://localhost:3000)
 - **Backend API**: [http://localhost:5000](http://localhost:5000)
 
----
 
 ## 🧑‍💻 **Environment Variables**
 
@@ -157,7 +150,6 @@ GOOGLE_CLIENT_SECRET=your_google_client_secret
 COOKIE_SECRET=your_cookie_secret
 ```
 
----
 
 ## 📦 **Docker Setup**
 
@@ -223,7 +215,6 @@ volumes:
   mongo_data:
 ```
 
----
 
 ## 📡 **API Routes**
 
@@ -250,4 +241,3 @@ We welcome contributions to **The Alter Office Task**!
 4. Commit and push 🚀
 5. Create a pull request 🎉
 
----

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # 🌐 **The Alter Office Task** 🚀
 
 
@@ -502,4 +501,3 @@ We welcome contributions to **The Alter Office Task**!
 5. Create a pull request 🎉
 
 ---
->>>>>>> 34d4895 (completed betterment)

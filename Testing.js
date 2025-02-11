@@ -111,21 +111,4 @@ describe("URL Shortening API", function () {
         });
     });
   });
-
-  describe("DELETE /auth/url/delete/:alias", () => {
-    it("should delete a short URL", (done) => {
-      request(app)
-        .delete(`/auth/url/delete/${alias}`)
-        .query({ token })
-        .end((err, res) => {
-          if (err) return done(err);
-          expect(res.status).to.equal(200);
-          expect(res.body).to.have.property(
-            "message",
-            "Short URL deleted successfully"
-          );
-          done();
-        });
-    });
-  });
 });

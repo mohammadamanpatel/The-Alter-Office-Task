@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: alter-office-task
+    environment:
+      - PORT=${PORT}
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
+      - CALL_BACK_URL=${CALL_BACK_URL}
+      - FRONTEND_URL=${FRONTEND_URL}
+      - JWT_SECRET=${JWT_SECRET}
+      - JWT_EXPIRY=${JWT_EXPIRY}
+      - COOKIE_MAX_AGE=${COOKIE_MAX_AGE}
+      - MONGO_URL=${MONGO_URL}
+      - BASE_URL=${BASE_URL}
+      - REDIS_STRING=${REDIS_STRING}
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo
+      - redis
+    networks:
+      - alter-office-network
+
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=your_username
+      - MONGO_INITDB_ROOT_PASSWORD=your_password
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - alter-office-network
+
+  redis:
+    image: redis:alpine
+    container_name: redis
+    networks:
+      - alter-office-network
+
+networks:
+  alter-office-network:
+    driver: bridge
+
+volumes:
+  mongo_data:

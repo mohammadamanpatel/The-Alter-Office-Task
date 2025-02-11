@@ -3,7 +3,11 @@ import Url from "../models/Url.model.js";
 import useragent from "useragent";
 import requestIp from "request-ip";
 import redisclient from "../config/Redis.config.js";
+<<<<<<< HEAD
 //Note that if you are using redis insight of local system so plz use redisclient.set instead of redisclient.setex(only for redis upstash)
+=======
+import Analytics from "../models/Analytics.model.js";
+>>>>>>> 34d4895 (completed betterment)
 
 // Create Short URL
 export const createShortUrl = async (req, res) => {
@@ -53,9 +57,23 @@ export const redirectToOriginalUrl = async (req, res) => {
     const osType = userAgent.os.toString();
     const deviceType = userAgent.device.toString();
 
+<<<<<<< HEAD
     urlData.clicks.push({ ipAddress, osType, deviceType });
     urlData.visits = (urlData.visits || 0) + 1;
     console.log("urlData", urlData);
+=======
+    // Create a new Analytics record for the click
+    const analytics = new Analytics({
+      url: urlData._id,
+      ipAddress,
+      osType,
+      deviceType,
+    });
+    await analytics.save();
+
+    // Update the clicks array in the Url document
+    urlData.visits = (urlData.visits || 0) + 1;
+>>>>>>> 34d4895 (completed betterment)
     await urlData.save();
 
     return res.json(urlData);
@@ -103,6 +121,7 @@ export const deleteShortUrl = async (req, res) => {
   }
 };
 
+<<<<<<< HEAD
 // Get URL Analytics
 export const getUrlAnalytics = async (req, res) => {
   try {
@@ -276,3 +295,6 @@ export const getOverallAnalytics = async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
+=======
+
+>>>>>>> 34d4895 (completed betterment)

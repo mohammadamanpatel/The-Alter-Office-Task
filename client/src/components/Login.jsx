@@ -9,6 +9,10 @@ const Login = () => {
       const response = await AxiosInstance.get("/google");
       // Step 2: Redirect the user to the Google OAuth page
       const googleAuthURL = response.data; // This is the URL returned by your backend
+<<<<<<< HEAD
+=======
+      console.log("googleAuthURL", googleAuthURL);
+>>>>>>> 34d4895 (completed betterment)
       window.location.href = googleAuthURL; // Redirect the user to Google for authentication
     } catch (error) {
       console.error("Failed to get Google OAuth URL:", error);

@@ -34,7 +34,7 @@ This application is Dockerized for easy setup and deployment. Redis is used for 
 Key Features:
 
 - 🔑 **Google OAuth** authentication
-- 🛠️ **Dockerized Backend and Frontend**
+- 🛠️ **Dockerized Backend**
 - 🔗 **Custom URL Shortening** with personalized aliases
 - 📈 **Analytics Dashboard**
 - 🔐 **Redis-based Rate Limiting** for enhanced protection
